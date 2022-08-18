@@ -7,26 +7,60 @@ import org.jointheleague.graphical.robot.Robot;
 public class _01_RobotRace {
 	//1. make a main method
 	public static void main(String[] args) {
-		int x = 10;
-		int y = 10;
-		Robot[] robots = {new Robot()};
-		for(int i = 0; i<5; i++) {
+		int x = 400;
+		int y = 50;
+		boolean isRacing = true;
+		Robot[] robots = new Robot[3];
+		for(int i = 0; i<robots.length; i++) {
 			robots[i] = new Robot();
 		}
 		
-		for(int i = 0; i<5; i++) {
+		for(int i = 0; i<robots.length; i++) {
+			
+			robots[i].setSpeed(15);
 			robots[i].setX(x);
 			robots[i].setY(y);
-			x+=20;
-			y+=20;
+			robots[i].turn(90);
+			y +=70;
+			
+			
 		}
-	
-		for(int i = 0; i<5; i++) {
-			while(robots[i].getY()< top y) {
-			Random rand = new Random();
-			robots[i].move(rand.nextInt(50));
+		/*
+		while(isRacing == true) {
+		for(int i = 0; i<robots.length; i++) {
+			 
+				Random rand = new Random();
+				robots[i].move(rand.nextInt(50));
+			if(robots[i].getY() <50) {
+				isRacing =false;
+				for(int j = 0; j<robots.length; j++) {
+					robots[j].turn(360);
+				}
+				
 			}
 		}
+		}
+		*/
+		
+		while(isRacing == true) {
+			for(int i = 0; i<robots.length; i++) {
+				Random rand = new Random();
+				int random = rand.nextInt(4);
+				for(int k = 0; k<random; k++) {
+					robots[i].move(2);
+					robots[i].turn(1);
+					if(robots[i].getX()==400 && robots[i].getY()==50) {
+						isRacing = false;
+						System.out.println("Robot "+i+" wins!");
+						break;
+					}
+				}
+				
+			}
+		}
+		
+		
+		
 	}
 	//2. create an array of 5 robots.
 
@@ -44,4 +78,5 @@ public class _01_RobotRace {
 	//8. try different races with different amounts of robots.
 
 	//9. make the robots race around a circular track.
+
 }
